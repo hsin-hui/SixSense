@@ -1,0 +1,30 @@
+For fmriprep preprocessing file: Open Script.py at /home/commmunicationlab/fmri
+1)Give the inputs in User inputs that is: 
+   i)Path to the bids root directory (i.e path to your dataset)
+  ii)Number of subjects can one or more in form of list e.g: ("01" ,"02", "03") 
+  iii)Number of threads depending on hardware available (usually 20)
+  iv)Memory for the fmriprep (usually 20)
+  v)Container should be docker always
+
+2)Give the path to the Freesurfer License file (Path is already given,file is present at /home/commmunicationlab/Downloads/license.txt)
+
+3)Done.
+
+For extracting the motion corrected files using fsl
+
+1)Give the inputs in User inputs that is: 
+  i)Path to FSL installation directory
+   ii)Path to the bids root directory
+  iii)Number of subjects can one or more in form of list e.g: ("01" "02" "03") 
+  iv)Number of threads depending on hardware available
+  v)Memory for the fmriprep
+  vi)Container should be docker always
+
+2)Give the path to the Freesurfer License file
+
+3)Paths to motion extraction files is already given but double check for change in name of files if needed.
+
+4)Path to FSL MCFLIRT tool is already given but check manually if it is available there or not.If not available then re-install FSL.
+
+5)Finally all the output files will be stored in derivatives folder
+  
