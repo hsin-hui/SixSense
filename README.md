@@ -1,3 +1,1 @@
-# SixSense
-此處儲存在嘗試複製 SixSense 實驗中結果所用到的程式碼。
-此 Project 共有兩個版本，此版本以使用論文中提供之程式碼為主
+This repository contains code that were used to produce the main data in the paper entitled:"Neural representations of naturalistic events are updated as our understanding of the past changes", eLife 2022 (link to the paper:https://elifesciences.org/articles/79045)
