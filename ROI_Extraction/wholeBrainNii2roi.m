@@ -37,6 +37,10 @@ for si=[48:63]; % x:y means loop sub-x to sub-y
         gdata_wholeBrain=nii2mat(f);
         gdata_wholeBrain(gdata_wholeBrain==0)=NaN;
 
+        % according to the paper, we should perform z-score before
+        % extrating ROIs!!
+        gdata_wholeBrain = zscore(gdata_wholeBrain, 0, 2);
+
         % load roimask 
         for ri=[001:100]%:length(ls(sprintf('%s/%s/mat/*.mat',expdir,froidir)));
             load(sprintf('%s/%s/mat/roi%03d.mat',expdir,froidir,ri),'roimask');
