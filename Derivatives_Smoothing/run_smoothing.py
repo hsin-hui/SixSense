@@ -4,7 +4,7 @@ import subprocess
 
 # ==== Configuration ====
 fwhm = 7  # target global smoothness
-base_dir = Path('/home/commmunicationlab/Desktop/SixSense_bids/derivatives/filter')  # source from regression
+base_dir = Path('/home/commmunicationlab/Desktop/SixSense_bids/derivatives/filter')  # source from regression # or smoothing before filter depends on the process
 output_root = Path('/home/commmunicationlab/Desktop/SixSense_Version02/derivatives_smoothing/derivatives_smoothing')  # new target
 
 subjects = [f"sub-{i:02d}" for i in range(1, 64) if i not in [5, 10, 14, 25, 42, 58]]
