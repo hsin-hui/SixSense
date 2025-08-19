@@ -30,7 +30,7 @@ for subj in sorted(os.listdir(fmriprep_dir)):
         if subj not in task_meta[task]:
             task_meta[task][subj] = {
                 'bold': {
-                    'MNI152NLin6Asym': {'preproc': [], 'sm6': []}
+                    'MNI152NLin6Asym': {'preproc': [], 'sm6': []}  # change to sm7 if filter after smoothing (sm7)
                 },
                 'confounds': [],
                 'condition': 'n/a'
@@ -52,3 +52,4 @@ with open(output_json, 'w') as f:
     json.dump(task_meta, f, indent=2)
 
 print(f"Saved task_meta.json to {output_json}")
+
