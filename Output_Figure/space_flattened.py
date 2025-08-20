@@ -13,7 +13,7 @@ texture_right = surface.vol_to_surf(img, fsaverage.pial_right)
 
 # Set your desired threshold range
 vmin = 0.0
-vmax = 0.1
+vmax = 1.0
 
 # Mask values outside the range
 masked_left = np.copy(texture_left)
