@@ -12,15 +12,15 @@ texture_left = surface.vol_to_surf(img, fsaverage.pial_left)
 texture_right = surface.vol_to_surf(img, fsaverage.pial_right)
 
 # Set your desired threshold range
-vmin = 0.05
+vmin = 0.0
 vmax = 0.1
 
 # Mask values outside the range
 masked_left = np.copy(texture_left)
-masked_left[(masked_left < 0) | (masked_left > 1)] = np.nan
+masked_left[(masked_left < vmin) | (masked_left > vmax)] = np.nan
 
 masked_right = np.copy(texture_right)
-masked_right[(masked_right < 0) | (masked_right > 1)] = np.nan
+masked_right[(masked_right < vmin) | (masked_right > vmax)] = np.nan
 
 # Plot outer surface (lateral)
 plotting.plot_surf_stat_map(
