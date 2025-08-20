@@ -1,0 +1,6 @@
+Construct a virtual environment in terminal: python3 -m venv myenv
+Once venv was constructed, activate: source myenv/bin/activate
+Install Required Packages: pip install nibabel nilearn matplotlib
+Once the package was installed, run the script: apce_flattened
+When all done, deactivate: deactivate
+
