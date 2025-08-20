@@ -1,7 +1,8 @@
+import numpy as np
 from nilearn import surface, datasets, plotting, image
 
 # Load your statistical map (NIfTI file)
-img = image.load_img('/Volumes/Transcend/results_filter/rsa/maps/mm_pattern_corr_imp_100_realdiff_dm.nii')  # replace with your path
+img = image.load_img('/Volumes/Transcend/results_no_filter/rsa/maps/mm_pattern_corr_imp_100_realdiff_dm.nii')
 
 # Load fsaverage surface
 fsaverage = datasets.fetch_surf_fsaverage(mesh='fsaverage5')
@@ -10,47 +11,57 @@ fsaverage = datasets.fetch_surf_fsaverage(mesh='fsaverage5')
 texture_left = surface.vol_to_surf(img, fsaverage.pial_left)
 texture_right = surface.vol_to_surf(img, fsaverage.pial_right)
 
+# Set your desired threshold range
+vmin = 0.05
+vmax = 0.1
+
+# Mask values outside the range
+masked_left = np.copy(texture_left)
+masked_left[(masked_left < 0) | (masked_left > 1)] = np.nan
+
+masked_right = np.copy(texture_right)
+masked_right[(masked_right < 0) | (masked_right > 1)] = np.nan
+
 # Plot outer surface (lateral)
 plotting.plot_surf_stat_map(
-    fsaverage.infl_left, texture_left,
+    fsaverage.infl_left, masked_left,
     hemi='left', view='lateral',
     title='Left Hemisphere (Lateral)', 
     colorbar=True,
-    threshold=0.00,
-    bg_on_data=True, # 顯示大腦背景（避免透明網格感）
-    darkness=1 # 控制背景亮度，0 是全白，1 是全黑
+    bg_on_data=True,
+    darkness=1,
+    vmin=vmin, vmax=vmax
 )
 
 plotting.plot_surf_stat_map(
-    fsaverage.infl_right, texture_right,
+    fsaverage.infl_right, masked_right,
     hemi='right', view='lateral',
     title='Right Hemisphere (Lateral)', 
     colorbar=True,
-    threshold=0.00,
     bg_on_data=True,
-    darkness=1
+    darkness=1,
+    vmin=vmin, vmax=vmax
 )
 
 # Plot inner surface (medial)
 plotting.plot_surf_stat_map(
-    fsaverage.infl_left, texture_left,
+    fsaverage.infl_left, masked_left,
     hemi='left', view='medial',
     title='Left Hemisphere (Medial)',
     colorbar=True,
-    threshold=0.00,
     bg_on_data=True,
-    darkness=1
+    darkness=1,
+    vmin=vmin, vmax=vmax
 )
 
 plotting.plot_surf_stat_map(
-    fsaverage.infl_right, texture_right,
+    fsaverage.infl_right, masked_right,
     hemi='right', view='medial',
     title='Right Hemisphere (Medial)',
     colorbar=True,
-    threshold=0.00,
     bg_on_data=True,
-    darkness=1
+    darkness=1,
+    vmin=vmin, vmax=vmax
 )
 
 plotting.show()
-
